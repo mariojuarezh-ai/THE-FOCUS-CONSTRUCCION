@@ -9,8 +9,10 @@ import {
   ChevronLeft,
   Gift,
   ShoppingBag,
-  Calendar,
 } from "lucide-react";
+
+const BANNER_BUEN_FIN_URL =
+  "https://thefocusplan.com/IMAGENES/BANNER%20BUEN%20FIN.png";
 
 export interface BuenFinPackage {
   id: string;
@@ -166,6 +168,7 @@ export const BuenFinPromos: React.FC<BuenFinPromosProps> = ({
   // Default to index 0 (FEEL LIKE YOURSELF - top card on Story)
   const [[page, direction], setPage] = useState<[number, number]>([0, 0]);
   const [selectedPkg, setSelectedPkg] = useState<BuenFinPackage | null>(null);
+  const [bannerError, setBannerError] = useState(false);
 
   const total = BUEN_FIN_PACKAGES.length;
   const currentPkg = BUEN_FIN_PACKAGES[page];
@@ -207,33 +210,43 @@ export const BuenFinPromos: React.FC<BuenFinPromosProps> = ({
       aria-label="Promociones Buen Fin Focus"
       className="w-full max-w-4xl mx-auto"
     >
-      {/* Header matching Story Graphic: BUEN FIN FOCUS */}
-      <div className="text-center mb-6 md:mb-8 space-y-2.5">
-        <div className="inline-flex items-center justify-center gap-2 text-xs font-bold tracking-[0.28em] text-[#F2F2F2]/80 uppercase">
-          <Calendar size={14} className="text-[#B4D330]" />
-          <span>
-            {language === "es"
-              ? "SOLO POR TIEMPO LIMITADO"
-              : "LIMITED TIME ONLY"}
-          </span>
-        </div>
+      {/* Header Banner Image from thefocusplan.com/IMAGENES */}
+      <div className="text-center mb-6 md:mb-8 space-y-5 flex flex-col items-center">
+        <h1 className="sr-only">
+          {language === "es"
+            ? "BUEN FIN FOCUS - Solo por tiempo limitado"
+            : "BUEN FIN FOCUS - Limited time only"}
+        </h1>
 
-        <div className="flex items-center justify-center gap-3 flex-wrap">
-          <h1 className="stencil text-5xl sm:text-6xl md:text-7xl leading-[0.88] text-white italic tracking-tight">
-            BUEN FIN{" "}
-            <span className="text-[#B4D330] underline decoration-[#B4D330]/70 decoration-4 underline-offset-4">
-              FOCUS
-            </span>
-          </h1>
-          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-sm border-2 border-white/80 bg-[#0B0B0B] flex items-center justify-center text-[#B4D330] shadow-lg">
-            <ShoppingBag size={22} />
-          </div>
-        </div>
+        <div className="relative w-full max-w-[420px] sm:max-w-[460px] aspect-square rounded-sm overflow-hidden border border-[#768455]/40 bg-[#0B0B0B] shadow-[0_25px_60px_rgba(0,0,0,0.75)] flex items-center justify-center">
+          <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#768455] z-20 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#768455] z-20 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#768455] z-20 pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#768455] z-20 pointer-events-none" />
 
-        <p className="text-xs sm:text-sm md:text-base font-extrabold tracking-[0.16em] text-white uppercase">
-          ENTRENA. AVANZA.{" "}
-          <span className="text-[#B4D330]">SIENTE LA DIFERENCIA.</span>
-        </p>
+          {!bannerError ? (
+            <img
+              src={BANNER_BUEN_FIN_URL}
+              alt="Buen Fin Focus - Entrena. Avanza. Siente la diferencia."
+              className="w-full h-full object-contain"
+              referrerPolicy="no-referrer"
+              onError={() => setBannerError(true)}
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center p-8 space-y-3 bg-[#0B0B0B]">
+              <div className="stencil text-5xl sm:text-6xl leading-[0.88] text-white italic tracking-tight">
+                BUEN FIN{" "}
+                <span className="text-[#B4D330] underline decoration-[#B4D330]/70 decoration-4 underline-offset-4">
+                  FOCUS
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm font-extrabold tracking-[0.16em] text-white uppercase">
+                ENTRENA. AVANZA.{" "}
+                <span className="text-[#B4D330]">SIENTE LA DIFERENCIA.</span>
+              </p>
+            </div>
+          )}
+        </div>
 
         {/* Quick Package Tabs */}
         <div className="pt-3 flex flex-wrap items-center justify-center gap-2">

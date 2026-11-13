@@ -156,18 +156,16 @@ export default function App() {
       {/* Main Content: Buen Fin Deals First, then Under Construction Visual + WhatsApp */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 md:py-12 space-y-12 md:space-y-16">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="w-full"
         >
           <BuenFinPromos language={language} />
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="w-full max-w-xl mx-auto flex flex-col items-center text-center space-y-7 pt-4 border-t border-[#768455]/20"
         >
           {/* Featured Under Construction Image from thefocusplan.com/IMAGENES */}
