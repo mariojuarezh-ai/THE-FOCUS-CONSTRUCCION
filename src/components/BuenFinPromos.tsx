@@ -218,34 +218,68 @@ export const BuenFinPromos: React.FC<BuenFinPromosProps> = ({
             : "BUEN FIN FOCUS - Limited time only"}
         </h1>
 
-        <div className="relative w-full max-w-[420px] sm:max-w-[460px] aspect-square rounded-sm overflow-hidden border border-[#768455]/40 bg-[#0B0B0B] shadow-[0_25px_60px_rgba(0,0,0,0.75)] flex items-center justify-center">
-          <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#768455] z-20 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#768455] z-20 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#768455] z-20 pointer-events-none" />
-          <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#768455] z-20 pointer-events-none" />
+        <div className="w-full max-w-[420px] sm:max-w-[460px] flex flex-col rounded-sm overflow-hidden border border-[#768455]/55 bg-[#0B0B0B] shadow-[0_25px_60px_rgba(0,0,0,0.75)]">
+          <a
+            href={`${WHATSAPP_BASE}${encodeURIComponent(
+              language === "es"
+                ? "¡Hola Coach! Vi el banner de BUEN FIN FOCUS y quiero aprovechar la promoción."
+                : "Hello Coach! I saw the BUEN FIN FOCUS banner and want to claim the promotion."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={
+              language === "es"
+                ? "Buen Fin Focus - Contactar por WhatsApp"
+                : "Buen Fin Focus - Contact on WhatsApp"
+            }
+            className="group relative w-full aspect-square bg-[#0B0B0B] flex items-center justify-center overflow-hidden focus-visible:outline-2 focus-visible:outline-[#B4D330]"
+          >
+            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#768455] z-20 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#768455] z-20 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#768455] z-20 pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#768455] z-20 pointer-events-none" />
 
-          {!bannerError ? (
-            <img
-              src={BANNER_BUEN_FIN_URL}
-              alt="Buen Fin Focus - Entrena. Avanza. Siente la diferencia."
-              className="w-full h-full object-contain"
-              referrerPolicy="no-referrer"
-              onError={() => setBannerError(true)}
-            />
-          ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center p-8 space-y-3 bg-[#0B0B0B]">
-              <div className="stencil text-5xl sm:text-6xl leading-[0.88] text-white italic tracking-tight">
-                BUEN FIN{" "}
-                <span className="text-[#B4D330] underline decoration-[#B4D330]/70 decoration-4 underline-offset-4">
-                  FOCUS
-                </span>
+            {!bannerError ? (
+              <img
+                src={BANNER_BUEN_FIN_URL}
+                alt="Buen Fin Focus - Entrena. Avanza. Siente la diferencia."
+                className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.015]"
+                referrerPolicy="no-referrer"
+                onError={() => setBannerError(true)}
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center p-8 space-y-3 bg-[#0B0B0B]">
+                <div className="stencil text-5xl sm:text-6xl leading-[0.88] text-white italic tracking-tight">
+                  BUEN FIN{" "}
+                  <span className="text-[#B4D330] underline decoration-[#B4D330]/70 decoration-4 underline-offset-4">
+                    FOCUS
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm font-extrabold tracking-[0.16em] text-white uppercase">
+                  ENTRENA. AVANZA.{" "}
+                  <span className="text-[#B4D330]">SIENTE LA DIFERENCIA.</span>
+                </p>
               </div>
-              <p className="text-xs sm:text-sm font-extrabold tracking-[0.16em] text-white uppercase">
-                ENTRENA. AVANZA.{" "}
-                <span className="text-[#B4D330]">SIENTE LA DIFERENCIA.</span>
-              </p>
-            </div>
-          )}
+            )}
+          </a>
+
+          <a
+            href={`${WHATSAPP_BASE}${encodeURIComponent(
+              language === "es"
+                ? "¡Hola Coach! Vi el banner de BUEN FIN FOCUS y quiero aprovechar la promoción."
+                : "Hello Coach! I saw the BUEN FIN FOCUS banner and want to claim the promotion."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-3.5 px-5 bg-[#B4D330] hover:bg-white text-[#0B0B0B] font-black text-xs sm:text-sm tracking-widest uppercase flex items-center justify-center gap-2.5 border-t border-[#768455]/50 transition-colors whitespace-nowrap focus-visible:outline-2 focus-visible:outline-white"
+          >
+            <MessageCircle size={18} className="shrink-0" />
+            <span>
+              {language === "es"
+                ? "APROVECHAR PROMO POR WHATSAPP"
+                : "CLAIM DEAL ON WHATSAPP"}
+            </span>
+          </a>
         </div>
 
         {/* Quick Package Tabs */}
